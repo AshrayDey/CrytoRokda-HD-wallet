@@ -1,11 +1,15 @@
 package main
 
 import (
-	"HD-Wallet/utils"
-	"fmt"
+	"HD-Wallet/db"
+	"HD-Wallet/routes"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	fmt.Print("Hello")
-	utils.GenerateMneunonic("hello")
+	db.Init()
+	server := gin.Default()
+	routes.RegisteredRoutes(server)
+	server.Run(":8080")
 }

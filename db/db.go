@@ -36,10 +36,10 @@ func createTable() {
 
 	userTable := `
 	CREATE TABLE IF NOT EXISTS users (
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 		name TEXT NOT NULL,
 		email TEXT NOT NULL UNIQUE,
-		hashed_Password TEXT,
+		hashed_Password TEXT
 	);
 	`
 	result := DB.Exec(userTable)
