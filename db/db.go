@@ -22,9 +22,14 @@ func Init() {
 		log.Fatal("DSN could not be retrieved")
 	}
 
-	DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatalf("DB Error:%v", err)
+	}
+	DB = db
 	fmt.Println("DB initialised successfully")
+	fmt.Println("---------Creating Tables--------")
+	createTable()
 }
 
 func createTable() {
